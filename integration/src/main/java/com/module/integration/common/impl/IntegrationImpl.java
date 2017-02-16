@@ -30,8 +30,11 @@ public class IntegrationImpl implements Integration {
   public void send(ConfigurableApplicationContext ctx, String message) {
 
     // AnnotationConfigApplicationContext ctxx = new AnnotationConfigApplicationContext(RootConfiguration.class);
+    // OneDirGat odg = ctx.getBean(OneDirGat.class);
+    // odg.send(message);
     OneDirectionGateway oneDirectionGateway = ctx.getBean(OneDirectionGateway.class);
     oneDirectionGateway.send(message);
+
   }
 
   @Override
