@@ -6,10 +6,9 @@
 	<groupId>com.module</groupId>
 	<artifactId>integration</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
 	<name>integration</name>
-	<description>Demo project for Spring Boot</description>
+	<description>PoC module for Spring Integration and JMS</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -25,23 +24,37 @@
 	</properties>
 
 	<dependencies>
+  
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-activemq</artifactId>
 		</dependency>
+    
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-integration</artifactId>
 		</dependency>
 
-		<dependency>
+    <dependency>
+      <groupId>org.springframework.integration</groupId>
+      <artifactId>spring-integration-jms</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <version>1</version>
+    </dependency>
+
+<!-- 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
+    
 	</dependencies>
 
-	<build>
+<!-- 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -49,6 +62,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
+ -->
 
 </project>
