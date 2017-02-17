@@ -10,8 +10,8 @@ import org.springframework.integration.config.EnableIntegration;
  *
  */
 @Configuration
-@ComponentScan(basePackages = { "com.module.integration" })
 @EnableIntegration
+@ComponentScan(basePackages = { "com.module.integration" })
 @IntegrationComponentScan(basePackages = { "com.module.integration.common" })
 public class ModuleConfig {
 

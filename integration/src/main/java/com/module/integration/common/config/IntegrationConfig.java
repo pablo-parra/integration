@@ -9,8 +9,10 @@ import javax.inject.Inject;
 import javax.jms.ConnectionFactory;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.integration.annotation.MessagingGateway;
@@ -63,6 +65,8 @@ public class IntegrationConfig {
   // out
 
   @Bean
+  @Profile("1d")
+  @ConditionalOnProperty(prefix = "integration.emitter", name = "enabled", havingValue = "true")
   IntegrationFlow outFlow() {
 
     return IntegrationFlows.from("1d.Channel")
@@ -71,6 +75,8 @@ public class IntegrationConfig {
   }
 
   @Bean
+  @Profile("rr")
+  @ConditionalOnProperty(prefix = "integration.emitter", name = "enabled", havingValue = "true")
   public IntegrationFlow outAndInFlow() {
 
     return IntegrationFlows.from("rr.Channel")
@@ -80,6 +86,8 @@ public class IntegrationConfig {
   // in
 
   @Bean
+  @Profile("1d")
+  @ConditionalOnProperty(prefix = "integration.listener", name = "enabled", havingValue = "true")
   public IntegrationFlow inFlow(IntegrationHandler handler) throws Exception {
 
     return IntegrationFlows.from(Jms.inboundAdapter(this.connectionFactory).destination(this.queue_1d),
@@ -93,6 +101,8 @@ public class IntegrationConfig {
   }
 
   @Bean
+  @Profile("rr")
+  @ConditionalOnProperty(prefix = "integration.listener", name = "enabled", havingValue = "true")
   public IntegrationFlow inAndOutFlow(IntegrationHandler h) {
 
     return IntegrationFlows.from(Jms.inboundGateway(this.connectionFactory).destination(this.queue_rr))

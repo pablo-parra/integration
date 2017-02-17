@@ -14,4 +14,6 @@ public interface Integration {
 
   void subscribe(IntegrationHandler handler);
 
+  void subscribeAndSend(IntegrationHandler h);
+
 }

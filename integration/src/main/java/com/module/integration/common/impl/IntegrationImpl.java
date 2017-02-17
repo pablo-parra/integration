@@ -30,8 +30,6 @@ public class IntegrationImpl implements Integration {
   public void send(ConfigurableApplicationContext ctx, String message) {
 
     // AnnotationConfigApplicationContext ctxx = new AnnotationConfigApplicationContext(RootConfiguration.class);
-    // OneDirGat odg = ctx.getBean(OneDirGat.class);
-    // odg.send(message);
     OneDirectionGateway oneDirectionGateway = ctx.getBean(OneDirectionGateway.class);
     oneDirectionGateway.send(message);
 
@@ -52,6 +50,17 @@ public class IntegrationImpl implements Integration {
 
     try {
       this.integrationConfig.inFlow(h);
+    } catch (Exception e) {
+      LOGGER.log(java.util.logging.Level.SEVERE, "Error subscribing to the integration flow: {0} ", e.getMessage());
+    }
+
+  }
+
+  @Override
+  public void subscribeAndSend(IntegrationHandler h) {
+
+    try {
+      this.integrationConfig.inAndOutFlow(h);
     } catch (Exception e) {
       LOGGER.log(java.util.logging.Level.SEVERE, "Error subscribing to the integration flow: {0} ", e.getMessage());
     }
